@@ -26,13 +26,13 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password=None, **extra_fields):
-        extra_fields.setdefault("is_staff", True)
-        extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("staff", True)
+        extra_fields.setdefault("admin", True)
 
-        if extra_fields.get("is_staff") is not True:
-            raise ValueError("Superuser must have is_staff=True.")
-        if extra_fields.get("is_superuser") is not True:
-            raise ValueError("Superuser must have is_superuser=True.")
+        if extra_fields.get("staff") is not True:
+            raise ValueError("Superuser must have staff=True.")
+        if extra_fields.get("admin") is not True:
+            raise ValueError("Superuser must have admin=True.")
 
         return self.create_user(email, password, **extra_fields)
 
@@ -63,7 +63,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return f"{self.first_name} {self.last_name}"
 
     def get_short_name(self):
-        return self.phone
+        return self.first_name
 
     def has_perm(self, perm, obj=None):
         return True
@@ -82,3 +82,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     @property
     def is_active(self):
         return self.active
+
+    class Meta(AbstractBaseUser.Meta):
+        verbose_name = "User"
