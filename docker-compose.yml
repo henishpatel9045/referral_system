@@ -14,7 +14,7 @@ services:
     volumes:
       - .:/home/app
     command: >
-      /bin/bash -c '[[ "${ENVIRONMENT}" == "local" ]] && py manage.py runserver 0.0.0.0:8000 || /usr/bin/supervisord'
+      /bin/bash -c '[[ "${ENVIRONMENT}" == "local" ]] && python manage.py runserver 0.0.0.0:8000 || /usr/bin/supervisord'
     ports:
       - "8000:8000"
     depends_on:

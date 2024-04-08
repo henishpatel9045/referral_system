@@ -11,3 +11,5 @@ RUN pip install -r requirements.txt
 
 COPY codeRunner.conf /etc/supervisor/conf.d/
 COPY . .
+
+RUN python manage.py collectstatic --noinput
