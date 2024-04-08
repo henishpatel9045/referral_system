@@ -1,7 +1,7 @@
 from functools import wraps
 from rest_framework.response import Response
-from rest_framework.exceptions import ValidationError
 from rest_framework import status
+from rest_framework.exceptions import ValidationError
 
 
 def handle_exceptions(func):
@@ -15,10 +15,9 @@ def handle_exceptions(func):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         except Exception as e:
-            print(e)
             return Response(
-                {"message": "Internal Server Error"},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                {"message": e.message},
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
     return wrapper

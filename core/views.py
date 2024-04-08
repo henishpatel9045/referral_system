@@ -17,6 +17,10 @@ class UserViewSet(GenericViewSet, CreateModelMixin):
     queryset = CustomUser.objects.all()
     serializer_class = CreateUserSerializer
 
+    @handle_exceptions
+    def create(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)
+
 
 class CurrentUserAPIView(APIView):
     permission_classes = [IsAuthenticated]
