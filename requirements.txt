@@ -6,3 +6,4 @@ psycopg2
 djangorestframework-simplejwt
 setuptools
 gunicorn
+coverage

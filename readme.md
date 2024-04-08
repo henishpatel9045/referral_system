@@ -14,6 +14,12 @@ This is a referral system API that allows users to refer other users to a platfo
 git clone https://github.com/henishpatel9045/referral_system.git
 ```
 
+2. Create .env file
+
+```bash
+cp .env.example .env
+```
+
 2. Run Via Docker
 
 ```bash
